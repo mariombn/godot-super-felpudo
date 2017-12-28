@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://scripts/personagem.gd" type="Script" id=1]
 [ext_resource path="res://assets/Personagem/p1_walk01.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://assets/Personagem/p1_walk05.png" type="Texture" id=6]
 [ext_resource path="res://assets/Personagem/p1_walk06.png" type="Texture" id=7]
 [ext_resource path="res://assets/Personagem/p1_walk07.png" type="Texture" id=8]
+[ext_resource path="res://tilesets/tileset.tres" type="TileSet" id=9]
+[ext_resource path="res://assets/Tiles/cloud1.png" type="Texture" id=10]
+[ext_resource path="res://assets/Tiles/cloud2.png" type="Texture" id=11]
+[ext_resource path="res://assets/Tiles/cloud3.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -23,35 +27,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 1250.86, 433.698, 1291.36, 191.445, 1301.21, 745.872 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 1250.86, 433.698, 1301.21, 745.872, 259.777, 747.973, 961.345, 486.566 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 762.46, 486.566, 961.345, 486.566, 259.777, 747.973 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 493.539, 483.453, 762.46, 486.566, 259.777, 747.973 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 493.539, 483.453, 259.777, 747.973, 216.715, 440.391, 345.9, 440.391 )
-
 [node name="game" type="Node"]
 
 [node name="personagem" type="KinematicBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 641.971, 324.762 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -67,7 +47,7 @@ script/script = ExtResource( 1 )
 transform/scale = Vector2( 1.3, 1.3 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 4
+frame = 5
 playing = true
 
 [node name="shape" type="CollisionShape2D" parent="personagem"]
@@ -93,37 +73,78 @@ cast_to = Vector2( 0, 5 )
 layer_mask = 1
 type_mask = 15
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="personagem"]
 
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.34601, -17.0698 )
-shapes/0/trigger = false
-shapes/1/shape = SubResource( 4 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, -1.34601, -17.0698 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 5 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, -1.34601, -17.0698 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 6 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, -1.34601, -17.0698 )
-shapes/3/trigger = false
-shapes/4/shape = SubResource( 7 )
-shapes/4/transform = Matrix32( 1, 0, 0, 1, -1.34601, -17.0698 )
-shapes/4/trigger = false
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = 0
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = true
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="tileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 9 )
+cell/size = Vector2( 70, 70 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
+occluder/light_mask = 1
+tile_data = IntArray( 262144, 1, 262145, 1, 262163, 0, 262164, 1, 262165, 1, 262166, 2, 327680, 3, 327681, 3, 393216, 3, 393217, 3, 393241, 1, 393242, 1, 393243, 1, 393244, 1, 393245, 1, 393246, 1, 458752, 3, 458753, 3, 458777, 3, 458778, 3, 458779, 3, 458780, 3, 458781, 3, 458782, 3, 524288, 3, 524289, 3, 524290, 1, 524291, 1, 524292, 1, 524293, 1, 524294, 1, 524295, 1, 524296, 1, 524297, 1, 524298, 1, 524299, 1, 524300, 4, 524301, 4, 524302, 4, 524303, 1, 524304, 1, 524305, 1, 524306, 1, 524307, 1, 524308, 1, 524309, 1, 524310, 1, 524311, 1, 524312, 1, 524313, 3, 524314, 3, 524315, 3, 524316, 3, 524317, 3, 524318, 3, 589824, 3, 589825, 3, 589826, 3, 589827, 3, 589828, 3, 589829, 3, 589830, 3, 589831, 3, 589832, 3, 589833, 3, 589834, 3, 589835, 3, 589836, 5, 589837, 5, 589838, 5, 589839, 3, 589840, 3, 589841, 3, 589842, 3, 589843, 3, 589844, 3, 589845, 3, 589846, 3, 589847, 3, 589848, 3, 589849, 3, 589850, 3, 589851, 3, 589852, 3, 589853, 3, 589854, 3, 655360, 3, 655361, 3, 655362, 3, 655363, 3, 655364, 3, 655365, 3, 655366, 3, 655367, 3, 655368, 3, 655369, 3, 655370, 3, 655371, 3, 655372, 5, 655373, 5, 655374, 5, 655375, 3, 655376, 3, 655377, 3, 655378, 3, 655379, 3, 655380, 3, 655381, 3, 655382, 3, 655383, 3, 655384, 3, 655385, 3, 655386, 3, 655387, 3, 655388, 3, 655389, 3, 655390, 3, 720896, 3, 720897, 3, 720898, 3, 720899, 3, 720900, 3, 720901, 3, 720902, 3, 720903, 3, 720904, 3, 720905, 3, 720906, 3, 720907, 3, 720908, 5, 720909, 5, 720910, 5, 720911, 3, 720912, 3, 720913, 3, 720914, 3, 720915, 3, 720916, 3, 720917, 3, 720918, 3, 720919, 3, 720920, 3, 720921, 3, 720922, 3, 720923, 3, 720924, 3, 720925, 3, 720926, 3 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="backgroud" type="ParallaxBackground" parent="."]
 
-transform/pos = Vector2( -1.34601, -17.0698 )
-build_mode = 0
-polygon = Vector2Array( 345.9, 440.391, 493.539, 483.453, 762.46, 486.566, 961.345, 486.566, 1250.86, 433.698, 1291.36, 191.445, 1301.21, 745.872, 259.777, 747.973, 216.715, 440.391 )
-shape_range = Vector2( 0, 4 )
-trigger = false
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="layer" type="ParallaxLayer" parent="backgroud"]
+
+motion/scale = Vector2( 0.7, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="cloud1" type="Sprite" parent="backgroud/layer"]
+
+transform/pos = Vector2( 145.679, 90.1963 )
+transform/scale = Vector2( 1.6342, 1.6342 )
+texture = ExtResource( 10 )
+
+[node name="cloud2" type="Sprite" parent="backgroud/layer"]
+
+transform/pos = Vector2( 494.947, 260.194 )
+transform/scale = Vector2( 1.6342, 1.6342 )
+texture = ExtResource( 11 )
+
+[node name="cloud3" type="Sprite" parent="backgroud/layer"]
+
+transform/pos = Vector2( 1066.76, 176.741 )
+transform/scale = Vector2( 1.6342, 1.6342 )
+texture = ExtResource( 12 )
 
 

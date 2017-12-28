@@ -101,6 +101,7 @@ func _fixed_process(delta):
 		sprite.set_frame(3)
 	else:
 		sprite.stop()
+		sprite.set_frame(1)
 
 func _ready():
 	set_fixed_process(true)
