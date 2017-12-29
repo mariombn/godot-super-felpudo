@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=8 format=1]
+[gd_resource type="TileSet" load_steps=15 format=1]
 
 [ext_resource path="res://assets/Tiles/grassLeft.png" type="Texture" id=1]
 [ext_resource path="res://assets/Tiles/grassMid.png" type="Texture" id=2]
@@ -6,11 +6,31 @@
 [ext_resource path="res://assets/Tiles/grassCenter.png" type="Texture" id=4]
 [ext_resource path="res://assets/Tiles/liquidWaterTop_mid.png" type="Texture" id=5]
 [ext_resource path="res://assets/Tiles/liquidWater.png" type="Texture" id=6]
+[ext_resource path="res://assets/Tiles/grassHillLeft.png" type="Texture" id=7]
+[ext_resource path="res://assets/Tiles/grassHillRight.png" type="Texture" id=8]
+[ext_resource path="res://assets/Tiles/grassHillLeft2.png" type="Texture" id=9]
+[ext_resource path="res://assets/Tiles/grassHillRight2.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 35, 35 )
+
+[sub_resource type="SegmentShape2D" id=7]
+
+custom_solver_bias = 0.0
+a = Vector2( 35.1787, -33.7964 )
+b = Vector2( -34.0289, 35.4112 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -34.8768, 34.595, -35.495, -35.1225, 0, 0, 33.594, 34.595 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0.613281, 0.538872, 33.594, 34.595, 0, 0 )
 
 [resource]
 
@@ -80,4 +100,48 @@ extents = Vector2( 35, 35 )
 5/shapes = [  ]
 5/one_way_collision_direction = Vector2( 0, 0 )
 5/one_way_collision_max_depth = 0.0
+6/name = "grassRampLeft"
+6/texture = ExtResource( 7 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 70, 70 )
+6/occluder_offset = Vector2( 35, 35 )
+6/navigation_offset = Vector2( 35, 35 )
+6/shape_offset = Vector2( 35, 35 )
+6/shapes = [ SubResource( 7 ) ]
+6/one_way_collision_direction = Vector2( 0, 0 )
+6/one_way_collision_max_depth = 0.0
+7/name = "grassRampRight"
+7/texture = ExtResource( 8 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 70, 70 )
+7/occluder_offset = Vector2( 35, 35 )
+7/navigation_offset = Vector2( 35, 35 )
+7/shape_offset = Vector2( 35, 35 )
+7/shapes = [ SubResource( 5 ), SubResource( 6 ) ]
+7/one_way_collision_direction = Vector2( 0, 0 )
+7/one_way_collision_max_depth = 0.0
+8/name = "grassRampDownLeft"
+8/texture = ExtResource( 9 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 70, 70 )
+8/occluder_offset = Vector2( 35, 35 )
+8/navigation_offset = Vector2( 35, 35 )
+8/shape_offset = Vector2( 35, 35 )
+8/shapes = [ SubResource( 1 ) ]
+8/one_way_collision_direction = Vector2( 0, 0 )
+8/one_way_collision_max_depth = 0.0
+9/name = "grassRampDownRight"
+9/texture = ExtResource( 10 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 70, 70 )
+9/occluder_offset = Vector2( 35, 35 )
+9/navigation_offset = Vector2( 35, 35 )
+9/shape_offset = Vector2( 35, 35 )
+9/shapes = [ SubResource( 1 ) ]
+9/one_way_collision_direction = Vector2( 0, 0 )
+9/one_way_collision_max_depth = 0.0
 
